@@ -17,7 +17,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Hello World | GShang</title>
+	<title>Chrome视频解析插件 | GShang</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -26,7 +26,7 @@
 	<meta name="description" content>
 
 	
-	<meta name="keywords" content>
+	<meta name="keywords" content="chrome">
 	
 
 	
@@ -45,14 +45,14 @@
 
 	<meta property="og:site_name" content="GShang">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="Hello World | GShang">
+	<meta property="og:title" content="Chrome视频解析插件 | GShang">
 	<meta property="og:description" content>
-	<meta property="og:url" content="http://yoursite.com/2019/05/17/hello-world/">
+	<meta property="og:url" content="http://yoursite.com/2019/05/18/Chrome视频解析插件/">
 
 	
-	<meta property="article:published_time" content="2019-05-17T21:05:27+08:00"> 
+	<meta property="article:published_time" content="2019-05-18T16:05:00+08:00"> 
 	<meta property="article:author" content="GShang">
-	<meta property="article:published_first" content="GShang, /2019/05/17/hello-world/">
+	<meta property="article:published_first" content="GShang, /2019/05/18/Chrome视频解析插件/">
 	
 </head>
 <body class="post-template">
@@ -133,33 +133,71 @@
     <div class="inner">
         <header class="post-full-header">
             <section class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2019-05-17T13:22:47.270Z" itemprop="datePublished">
-                    2019-05-17
+                <time class="post-full-meta-date" datetime="2019-05-18T08:01:13.000Z" itemprop="datePublished">
+                    2019-05-18
                 </time>
                 
                 <span class="date-divider">/</span>
                 
                 
             </section>
-            <h1 class="post-full-title">Hello World</h1>
+            <h1 class="post-full-title">Chrome视频解析插件</h1>
         </header>
-        <article class="post-full no-image">
+        <article class="post-full ">
+            
+            <figure class="post-full-image" style="background-image: url(http://tapit.com.au/ArticleContent/Img2_10062.jpg)">
+            </figure>
             
             <section class="post-full-content">
                 <div id="lightgallery" class="markdown-body">
-                    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+                    <blockquote>
+<p>我们在观看一些平台的视频资源时，比如优酷视频、腾讯视频、爱奇艺等等，通常都会需要VIP资格才能观看到更稀缺的视频，如何通过破解来实现免VIP观看呢？下面我们来看一看怎么用Chrome插件实现。</p>
+</blockquote>
+<h2 id="视频解析网站"><a href="#视频解析网站" class="headerlink" title="视频解析网站"></a>视频解析网站</h2><blockquote>
+<p>我们找到一个视频解析的网站，其基本解析原理就是将需要VIP的视频播放网址复制到搜索框中，点击搜索后跳转到解析后的视频地址，进行播放。</p>
+</blockquote>
+<p><strong>如果把它做成在网页上直接通过右键点击就可以播放，岂不是更方便？</strong></p>
+<h3 id="解析网站的工作原理"><a href="#解析网站的工作原理" class="headerlink" title="解析网站的工作原理"></a>解析网站的工作原理</h3><p>通过搜索框复制粘贴网址，获取到需要解析的视频网址，点击搜索后，网址和一串URL合成新的网址，后台解析并打开。新网址格式具体为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.wq114.org/yun.php?url=需要VIP的视频网址</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.wq114.org/" target="_blank" rel="noopener">点击打开解析网站</a></p>
+<h2 id="制作chrome插件"><a href="#制作chrome插件" class="headerlink" title="制作chrome插件"></a>制作chrome插件</h2><p>根据以上的分析，我们做插件只需要这几步来实现</p>
+<ol>
+<li>获取当前页面的网址；</li>
+<li>将网址与前缀URL组合在一起，构成解析格式；</li>
+<li>右键点击时，提交组合后的网址，并打开新窗口播放解析视频。<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3></li>
+</ol>
+<ul>
+<li>manifest.json(配置文件)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;update_url&quot;: &quot;https://clients2.google.com/service/update2/crx&quot;,</span><br><span class="line"></span><br><span class="line">  &quot;name&quot;: &quot;视频解析&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;通过右键解析当前需要VIP的视频资源&quot;,</span><br><span class="line">  &quot;manifest_version&quot;: 2,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;icons&quot;:&#123;</span><br><span class="line">	&quot;16&quot;:&quot;16.png&quot;,</span><br><span class="line">	&quot;48&quot;:&quot;48.png&quot;,</span><br><span class="line">	&quot;128&quot;:&quot;128.png&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;permissions&quot;: [&quot;contextMenus&quot;, &quot;tabs&quot;],</span><br><span class="line">  &quot;background&quot;: &#123;&quot;page&quot;: &quot;background.html&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注解：因为需要打开网页，和监测网页的网址，所以需要</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;permissions&quot;: [&quot;contextMenus&quot;, &quot;tabs&quot;]</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<ul>
+<li>jx.js(脚本文件)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function jx(info, tab)&#123;</span><br><span class="line">       var url=&apos;&apos;;</span><br><span class="line">chrome.tabs.getSelected(function(tab) &#123;</span><br><span class="line">    url=tab.url;</span><br><span class="line">	var open_url = &quot;http://www.wq114.org/yun.php?url=&quot; + url;</span><br><span class="line">	window.open(open_url);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var left_title =&quot;解析当前视频&quot;;</span><br><span class="line">var parent = chrome.contextMenus.create(&#123;&quot;title&quot;: left_title,&quot;contexts&quot;:[&quot;all&quot;],&quot;onclick&quot;:jx&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>注解：通过chrome内部的调用，由<strong>tab.url</strong>获取当前网址。构造<strong>jx</strong>函数，组合网址，最后利用<strong>chrome.contextMenus.create</strong>建立右键选项，其中<strong>contexts</strong>表示右键选项显示的条件，<strong>all</strong>表示任何情况下。，<strong>onclick</strong>表示点击后做的动作，直接调用了jx方法。</p>
+<ul>
+<li>background.html(后台网页)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;jx.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>注解：background一直调用jx.js实现所需功能。</p>
+<h2 id="打包成插件"><a href="#打包成插件" class="headerlink" title="打包成插件"></a>打包成插件</h2><p>所有代码编写完后，资源如下：</p>
+<ul>
+<li>16.png</li>
+<li>48.png</li>
+<li>128.png</li>
+<li>jx.js</li>
+<li>background.html</li>
+<li>manifest.json</li>
+</ul>
+<p>在浏览器插件管理中，选择开发者模式，打包扩展插件，得到可用的crx格式的chrome插件文件，将其拖拽到浏览器即可使用。</p>
+<p><a href="https://share.weiyun.com/59Xzjb9" target="_blank" rel="noopener">点击下载视频解析插件</a></p>
 
                 </div>
             </section>
@@ -170,11 +208,11 @@
     <div style="height: 4vw;width: 100%"></div>
     <nav id="gobottom" class="pagination">
         
-        <a class="prev-post" title="Chrome视频解析插件" href="/2019/05/18/Chrome视频解析插件/">
-            ← Chrome视频解析插件
-        </a>
-        
         <span class="prev-next-post">•</span>
+        
+        <a class="next-post" title="Hello World" href="/2019/05/17/hello-world/">
+            Hello World →
+        </a>
         
     </nav>
 
@@ -195,7 +233,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#视频解析网站"><span class="toc-text">视频解析网站</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解析网站的工作原理"><span class="toc-text">解析网站的工作原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#制作chrome插件"><span class="toc-text">制作chrome插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#具体实现"><span class="toc-text">具体实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打包成插件"><span class="toc-text">打包成插件</span></a></li></ol>
     </div>
 </div>
 
@@ -327,7 +365,7 @@
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">Hello World</div>
+    <div class="floating-header-title">Chrome视频解析插件</div>
     <progress class="progress" value="0">
         <div class="progress-container">
             <span class="progress-bar"></span>
